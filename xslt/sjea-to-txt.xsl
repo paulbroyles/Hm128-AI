@@ -27,7 +27,7 @@
         <xsl:variable name="linetext">
             <xsl:apply-templates/>
         </xsl:variable>
-        <xsl:sequence select="normalize-space($linetext)"/>
+        <xsl:sequence select="replace(normalize-space($linetext),'%%','&#xA;')"/>
         <xsl:text>&#xA;</xsl:text>
         <!-- Deals with any case where one of these elements is the final element in a unit, whether lg or div, by adding an extra newline -->
         <xsl:if test="not(following-sibling::*)">
@@ -86,7 +86,7 @@
     </xsl:template>
     
     <xsl:template match="tei:lb">
-        <xsl:text>&#xA;</xsl:text>
+        <xsl:text>%%</xsl:text>
     </xsl:template>
     
     <xsl:template match="tei:seg[@type='shadowHyphen']">
