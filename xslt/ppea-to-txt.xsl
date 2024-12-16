@@ -15,6 +15,8 @@
             <xsl:result-document method="text" encoding="UTF-8" href="{$filename}">
                 <xsl:apply-templates select="current-group()"/>
             </xsl:result-document>
+            <xsl:text>==</xsl:text><xsl:value-of select="$filename"/><xsl:text>==&#xA;</xsl:text>
+            <xsl:apply-templates select="current-group()"/>
         </xsl:for-each-group>
     </xsl:template>
     
@@ -93,7 +95,7 @@
         <xsl:if test="matches(., '^\s')">
             <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:sequence select="normalize-space()"/>
+        <xsl:value-of select="normalize-space()"/>
         <xsl:if test="matches(., '\s$')">
             <xsl:text> </xsl:text>
         </xsl:if>
